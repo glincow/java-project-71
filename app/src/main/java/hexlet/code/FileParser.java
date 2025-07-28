@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import java.util.Map;
 
 public class FileParser {
-    public static Map<String,String> getData(String path) throws IOException {
+    public static Map<String, String> getData(String path) throws IOException {
         return parse(readFile(path));
     }
 

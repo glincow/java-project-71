@@ -2,6 +2,8 @@ plugins {
     id("java")
     id("com.github.ben-manes.versions") version "0.52.0"
     id("application")
+    id("checkstyle")
+    id("org.sonarqube") version "6.2.0.5505"
 }
 
 group = "hexlet.code"
@@ -24,4 +26,12 @@ tasks.test {
 
 application {
     mainClass = "hexlet.code.App"
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "glincow_java-project-71")
+        property("sonar.organization", "glincow")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }
