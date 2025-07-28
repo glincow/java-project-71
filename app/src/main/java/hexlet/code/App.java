@@ -1,8 +1,15 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Command;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Map;
 import java.util.concurrent.Callable;
 import picocli.CommandLine.Parameters;
 
@@ -24,7 +31,36 @@ public class App implements Callable<Integer> {
     }
 
     public static void main(String[] args) {
-        int exitCode = new CommandLine(new App()).execute(args);
-        System.exit(exitCode);
+        //int exitCode = new CommandLine(new App()).execute(args);
+        //System.exit(exitCode);
+
+        try {
+            System.out.println(getData(readFile("src/main/resources/file1.json")));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
+
+    public static Map getData(String content) throws Exception {
+        return parse(content);
+    }
+
+    public static String readFile(String path) throws Exception {
+        Path filePath = Paths.get(path).toAbsolutePath().normalize();
+
+        System.out.println(filePath);
+
+        if (!Files.exists(filePath)) {
+            throw new Exception("File '" + path + "' does not exist");
+        }
+
+        return Files.readString(filePath);
+    }
+
+    public static Map parse(String content) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(content, Map.class);
+    }
+
+
 }
