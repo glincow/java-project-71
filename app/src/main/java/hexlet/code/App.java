@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.Callable;
 import picocli.CommandLine.Parameters;
 
@@ -26,41 +26,20 @@ public class App implements Callable<Integer> {
     private String filepath2;
 
     @Override
-    public Integer call() throws Exception {
+    public Integer call() {
+        try {
+            Map<String, String> data1 = FileParser.getData(filepath1);
+            Map<String, String> data2 = FileParser.getData(filepath2);
+            System.out.println(Differ.generate(data1, data2));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return 1;
+        }
         return 0;
     }
 
     public static void main(String[] args) {
-        //int exitCode = new CommandLine(new App()).execute(args);
-        //System.exit(exitCode);
-
-        try {
-            System.out.println(getData(readFile("src/main/resources/file1.json")));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        int exitCode = new CommandLine(new App()).execute(args);
+        System.exit(exitCode);
     }
-
-    public static Map getData(String content) throws Exception {
-        return parse(content);
-    }
-
-    public static String readFile(String path) throws Exception {
-        Path filePath = Paths.get(path).toAbsolutePath().normalize();
-
-        System.out.println(filePath);
-
-        if (!Files.exists(filePath)) {
-            throw new Exception("File '" + path + "' does not exist");
-        }
-
-        return Files.readString(filePath);
-    }
-
-    public static Map parse(String content) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(content, Map.class);
-    }
-
-
 }
