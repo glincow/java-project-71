@@ -36,3 +36,5 @@ sonar {
         property("sonar.host.url", "https://sonarcloud.io")
     }
 }
+
+tasks.jacocoTestReport { reports { xml.required.set(true) } }
