@@ -15,3 +15,6 @@
 
 ### Сравнение в plain формате
 [![asciicast](https://asciinema.org/a/LmE6IU1TE75VE3fQXtoF4aUlv.svg)](https://asciinema.org/a/LmE6IU1TE75VE3fQXtoF4aUlv)
+
+### Сравнение в json формате
+[![asciicast](https://asciinema.org/a/kfbw3a6upd9yxUwNIeUjNAh27.svg)](https://asciinema.org/a/kfbw3a6upd9yxUwNIeUjNAh27)
