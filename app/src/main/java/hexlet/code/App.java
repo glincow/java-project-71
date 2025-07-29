@@ -3,7 +3,6 @@ package hexlet.code;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Command;
-import java.util.Map;
 import java.util.concurrent.Callable;
 import picocli.CommandLine.Parameters;
 
@@ -13,7 +12,6 @@ public class App implements Callable<Integer> {
 
     @Option(names = {"-f", "--format"},  defaultValue = "stylish", description = "output format [default: stylish]")
     private String format;
-
     @Parameters(description = "path to first file")
     private String filepath1;
     @Parameters(description = " path to second file")
@@ -22,9 +20,7 @@ public class App implements Callable<Integer> {
     @Override
     public Integer call() {
         try {
-            Map<String, Object> data1 = Parser.getData(filepath1);
-            Map<String, Object> data2 = Parser.getData(filepath2);
-            System.out.println(Differ.generate(data1, data2, format));
+            System.out.println(Differ.generate(filepath1, filepath2, format));
         } catch (Exception e) {
             e.printStackTrace();
             return 1;

@@ -3,23 +3,22 @@ package hexlet.code;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import java.util.Map;
 
 class DifferTest {
-    private static Map<String, Object> jsonFile1;
-    private static Map<String, Object> jsonFile2;
-    private static Map<String, Object> yamlFile1;
-    private static Map<String, Object> yamlFile2;
+    private static String jsonPath1;
+    private static String jsonPath2;
+    private static String yamlPath1;
+    private static String yamlPath2;
     private static String expectedStylishDiff;
     private static String expectedPlainDiff;
     private static String expectedJsonDiff;
 
     @BeforeAll
-    static void setUp() throws Exception {
-        jsonFile1 = Parser.getData("src/test/resources/file1.json");
-        jsonFile2 = Parser.getData("src/test/resources/file2.json");
-        yamlFile1 = Parser.getData("src/test/resources/file1.yml");
-        yamlFile2 = Parser.getData("src/test/resources/file2.yml");
+    static void setUp() {
+        jsonPath1 = "src/test/resources/file1.json";
+        jsonPath2 = "src/test/resources/file2.json";
+        yamlPath1 = "src/test/resources/file1.yml";
+        yamlPath2 = "src/test/resources/file2.yml";
 
         expectedStylishDiff = "\n{\n"
                 + "    chars1: [a, b, c]\n"
@@ -85,45 +84,45 @@ class DifferTest {
 
     @Test
     void testGenerateEmptyDiffJson() throws Exception {
-        Map<String, Object> emptyFile1 = Parser.getData("src/test/resources/file1_empty.json");
-        Map<String, Object> emptyFile2 = Parser.getData("src/test/resources/file2_empty.json");
-        String diff = Differ.generate(emptyFile1, emptyFile2, "stylish");
+        String emptyPath1 = "src/test/resources/file1_empty.json";
+        String emptyPath2 = "src/test/resources/file2_empty.json";
+        String diff = Differ.generate(emptyPath1, emptyPath2, "stylish");
         Assertions.assertEquals("\n{\n}", diff);
     }
 
     @Test
     void testGenerateDiffWithChangedValuesJsonStylish() throws Exception {
-        String diff = Differ.generate(jsonFile1, jsonFile2, "stylish");
+        String diff = Differ.generate(jsonPath1, jsonPath2, "stylish");
         Assertions.assertEquals(expectedStylishDiff, diff);
     }
 
     @Test
     void testGenerateDiffWithChangedValuesYamlStylish() throws Exception {
-        String diff = Differ.generate(yamlFile1, yamlFile2, "stylish");
+        String diff = Differ.generate(yamlPath1, yamlPath2, "stylish");
         Assertions.assertEquals(expectedStylishDiff, diff);
     }
 
     @Test
     void testGenerateDiffWithChangedValuesJsonPlain() throws Exception {
-        String diff = Differ.generate(jsonFile1, jsonFile2, "plain");
+        String diff = Differ.generate(jsonPath1, jsonPath2, "plain");
         Assertions.assertEquals(expectedPlainDiff, diff);
     }
 
     @Test
     void testGenerateDiffWithChangedValuesYamlPlain() throws Exception {
-        String diff = Differ.generate(yamlFile1, yamlFile2, "plain");
+        String diff = Differ.generate(yamlPath1, yamlPath2, "plain");
         Assertions.assertEquals(expectedPlainDiff, diff);
     }
 
     @Test
     void testGenerateDiffWithChangedValuesJsonJson() throws Exception {
-        String diff = Differ.generate(jsonFile1, jsonFile2, "json");
+        String diff = Differ.generate(jsonPath1, jsonPath2, "json");
         Assertions.assertEquals(expectedJsonDiff, diff);
     }
 
     @Test
     void testGenerateDiffWithChangedValuesYamlJson() throws Exception {
-        String diff = Differ.generate(yamlFile1, yamlFile2, "json");
+        String diff = Differ.generate(yamlPath1, yamlPath2, "json");
         Assertions.assertEquals(expectedJsonDiff, diff);
     }
 }
