@@ -2,7 +2,7 @@ package hexlet.code;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DiffEntry {
+public final class DiffEntry {
     private final String key;
     private final Object oldValue;
     private final Object newValue;
