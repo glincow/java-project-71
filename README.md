@@ -12,3 +12,6 @@
 
 ### Сравнение вложенных структур
 [![asciicast](https://asciinema.org/a/MxI1jz1SuZhjmhXq8MfnLU5Ca.svg)](https://asciinema.org/a/MxI1jz1SuZhjmhXq8MfnLU5Ca)
+
+### Сравнение в plain формате
+[![asciicast](https://asciinema.org/a/LmE6IU1TE75VE3fQXtoF4aUlv.svg)](https://asciinema.org/a/LmE6IU1TE75VE3fQXtoF4aUlv)
