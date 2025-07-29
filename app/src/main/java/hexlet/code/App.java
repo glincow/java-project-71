@@ -22,8 +22,8 @@ public class App implements Callable<Integer> {
     @Override
     public Integer call() {
         try {
-            Map<String, String> data1 = Parser.getData(filepath1);
-            Map<String, String> data2 = Parser.getData(filepath2);
+            Map<String, Object> data1 = Parser.getData(filepath1);
+            Map<String, Object> data2 = Parser.getData(filepath2);
             System.out.println(Differ.generate(data1, data2, format));
         } catch (Exception e) {
             e.printStackTrace();

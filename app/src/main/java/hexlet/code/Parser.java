@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import java.util.Map;
 
 public class Parser {
-    public static Map<String, String> getData(String path) throws IOException {
+    public static Map<String, Object> getData(String path) throws IOException {
         String fileExtension = getFileExtension(path);
         String fileContent = readFile(path);
 
@@ -42,12 +42,12 @@ public class Parser {
         return Files.readString(filePath);
     }
 
-    private static Map<String, String> parseJson(String content) throws IOException {
+    private static Map<String, Object> parseJson(String content) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(content, Map.class);
     }
 
-    private static Map<String, String> parseYaml(String content) throws IOException {
+    private static Map<String, Object> parseYaml(String content) throws IOException {
         YAMLFactory yamlFactory = new YAMLFactory();
         YAMLParser yamlParser = yamlFactory.createParser(content);
         ObjectMapper objectMapper = new ObjectMapper(yamlFactory);

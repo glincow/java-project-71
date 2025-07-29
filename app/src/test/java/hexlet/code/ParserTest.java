@@ -13,7 +13,7 @@ class ParserTest {
 
     @Test
     void testParseJsonFile() throws IOException {
-        Map<String, String> result = Parser.getData(JSON_FILE_PATH);
+        Map<String, Object> result = Parser.getData(JSON_FILE_PATH);
 
         assertEquals(12, result.size());
         assertEquals("Some value", result.get("setting1"));
@@ -27,7 +27,7 @@ class ParserTest {
 
     @Test
     void testParseYamlFile() throws IOException {
-        Map<String, String> result = Parser.getData(YAML_FILE_PATH);
+        Map<String, Object> result = Parser.getData(YAML_FILE_PATH);
 
         assertEquals(12, result.size());
         assertEquals("Some value", result.get("setting1"));

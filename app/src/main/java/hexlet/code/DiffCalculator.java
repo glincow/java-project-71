@@ -7,7 +7,7 @@ import java.util.TreeSet;
 import java.util.Set;
 
 public class DiffCalculator {
-    public static List<DiffEntry> calculate(Map<String, String> file1, Map<String, String> file2) {
+    public static List<DiffEntry> calculate(Map<String, Object> file1, Map<String, Object> file2) {
         List<DiffEntry> differences = new ArrayList<>();
         Set<String> keys = new TreeSet<>(file1.keySet());
         keys.addAll(file2.keySet());
