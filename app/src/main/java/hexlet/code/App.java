@@ -20,7 +20,6 @@ public class App implements Callable<Integer> {
     @Override
     public Integer call() {
         try {
-            System.out.println();
             System.out.println(Differ.generate(filepath1, filepath2, format));
         } catch (Exception e) {
             e.printStackTrace();
