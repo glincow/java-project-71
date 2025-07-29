@@ -6,7 +6,7 @@ import java.util.List;
 
 public class StylishFormatter {
     public static String format(List<DiffEntry> differences) {
-        StringBuilder result = new StringBuilder("\n{\n");
+        StringBuilder result = new StringBuilder("{\n");
 
         for (DiffEntry entry : differences) {
             switch (entry.getType()) {

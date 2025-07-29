@@ -9,6 +9,6 @@ import java.util.List;
 public class JsonFormatter {
     public static String format(List<DiffEntry> differences) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        return "\n" + mapper.writeValueAsString(differences);
+        return mapper.writeValueAsString(differences);
     }
 }

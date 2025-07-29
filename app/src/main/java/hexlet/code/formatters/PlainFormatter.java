@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class PlainFormatter {
     public static String format(List<DiffEntry> differences) {
-        StringBuilder result = new StringBuilder("\n");
+        StringBuilder result = new StringBuilder();
 
         for (DiffEntry entry : differences) {
             switch (entry.getType()) {
@@ -36,11 +36,8 @@ public class PlainFormatter {
                     break;
             }
         }
-        String resultString = result.toString();
-        if (resultString.endsWith("\n")) {
-            return resultString.substring(0, resultString.length() - 1);
-        }
-        return resultString;
+
+        return result.toString().trim();
     }
 
     private static String formatValue(Object value) {

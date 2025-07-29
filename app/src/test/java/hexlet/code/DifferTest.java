@@ -20,7 +20,7 @@ class DifferTest {
         yamlPath1 = "src/test/resources/file1.yml";
         yamlPath2 = "src/test/resources/file2.yml";
 
-        expectedStylishDiff = "\n{\n"
+        expectedStylishDiff = "{\n"
                 + "    chars1: [a, b, c]\n"
                 + "  - chars2: [d, e, f]\n"
                 + "  + chars2: false\n"
@@ -46,7 +46,7 @@ class DifferTest {
                 + "  + setting3: none\n"
                 + "}";
 
-        expectedPlainDiff = "\nProperty 'chars2' was updated. From [complex value] to false\n"
+        expectedPlainDiff = "Property 'chars2' was updated. From [complex value] to false\n"
                 + "Property 'checked' was updated. From false to true\n"
                 + "Property 'default' was updated. From null to [complex value]\n"
                 + "Property 'id' was updated. From 45 to null\n"
@@ -60,7 +60,7 @@ class DifferTest {
                 + "Property 'setting2' was updated. From 200 to 300\n"
                 + "Property 'setting3' was updated. From true to 'none'";
 
-        expectedJsonDiff = "\n[{\"key\":\"chars1\",\"oldValue\":[\"a\",\"b\",\"c\"],"
+        expectedJsonDiff = "[{\"key\":\"chars1\",\"oldValue\":[\"a\",\"b\",\"c\"],"
                 + "\"newValue\":[\"a\",\"b\",\"c\"],\"type\":\"UNCHANGED\"},"
                 + "{\"key\":\"chars2\",\"oldValue\":[\"d\",\"e\",\"f\"],\"newValue\":false,"
                 + "\"type\":\"CHANGED\"},{\"key\":\"checked\",\"oldValue\":false,\"newValue\":true,"
@@ -87,7 +87,7 @@ class DifferTest {
         String emptyPath1 = "src/test/resources/file1_empty.json";
         String emptyPath2 = "src/test/resources/file2_empty.json";
         String diff = Differ.generate(emptyPath1, emptyPath2, "stylish");
-        Assertions.assertEquals("\n{\n}", diff);
+        Assertions.assertEquals("{\n}", diff);
     }
 
     @Test
