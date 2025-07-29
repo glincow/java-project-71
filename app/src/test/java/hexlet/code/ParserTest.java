@@ -15,21 +15,27 @@ class ParserTest {
     void testParseJsonFile() throws IOException {
         Map<String, String> result = Parser.getData(JSON_FILE_PATH);
 
-        assertEquals(4, result.size());
-        assertEquals("hexlet.io", result.get("host"));
-        assertEquals(50, result.get("timeout"));
-        assertEquals("123.234.53.22", result.get("proxy"));
-        assertEquals(false, result.get("follow"));
+        assertEquals(12, result.size());
+        assertEquals("Some value", result.get("setting1"));
+        assertEquals(200, result.get("setting2"));
+        assertEquals(true, result.get("setting3"));
+        assertEquals("value1", result.get("key1"));
+        assertEquals(45, result.get("id"));
+        assertEquals(null, result.get("default"));
+        assertEquals(false, result.get("checked"));
     }
 
     @Test
     void testParseYamlFile() throws IOException {
         Map<String, String> result = Parser.getData(YAML_FILE_PATH);
 
-        assertEquals(4, result.size());
-        assertEquals("hexlet.io", result.get("host"));
-        assertEquals(50, result.get("timeout"));
-        assertEquals("123.234.53.22", result.get("proxy"));
-        assertEquals(false, result.get("follow"));
+        assertEquals(12, result.size());
+        assertEquals("Some value", result.get("setting1"));
+        assertEquals(200, result.get("setting2"));
+        assertEquals(true, result.get("setting3"));
+        assertEquals("value1", result.get("key1"));
+        assertEquals(45, result.get("id"));
+        assertEquals(null, result.get("default"));
+        assertEquals(false, result.get("checked"));
     }
 }

@@ -1,33 +1,49 @@
 package hexlet.code;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
 
 public class Differ {
-    public static String generate(Map<String, String> file1, Map<String, String> file2) {
+    public static String generate(Map<String, String> file1,
+                                  Map<String, String> file2,
+                                  String format) throws Exception {
+        List<DiffEntry> differences = DiffCalculator.calculate(file1, file2);
+        return switch (format) {
+            case "stylish" -> formatDiff(differences);
+            default -> throw new Exception("This format is not supported");
+        };
+    }
+
+    private static String formatDiff(List<DiffEntry> differences) {
         StringBuilder result = new StringBuilder();
-        Set<String> keys = new TreeSet<>(file1.keySet());
-        keys.addAll(file2.keySet());
-
         result.append("\n{\n");
-        for (String key : keys) {
-            Object value1 = file1.getOrDefault(key, null);
-            Object value2 = file2.getOrDefault(key, null);
 
-            if (value1 == null) {
-                result.append("  + ").append(key).append(": ").append(value2).append("\n");
-            } else if (value2 == null) {
-                result.append("  - ").append(key).append(": ").append(value1).append("\n");
-            } else if (!value1.equals(value2)) {
-                result.append("  - ").append(key).append(": ").append(value1).append("\n");
-                result.append("  + ").append(key).append(": ").append(value2).append("\n");
-            } else {
-                result.append("    ").append(key).append(": ").append(value1).append("\n");
+        for (DiffEntry entry : differences) {
+            switch (entry.getType()) {
+                case ADDED:
+                    result.append("  + ").append(entry.getKey())
+                            .append(": ").append(entry.getNewValue()).append("\n");
+                    break;
+                case DELETED:
+                    result.append("  - ").append(entry.getKey())
+                            .append(": ").append(entry.getOldValue()).append("\n");
+                    break;
+                case CHANGED:
+                    result.append("  - ").append(entry.getKey())
+                            .append(": ").append(entry.getOldValue()).append("\n");
+                    result.append("  + ").append(entry.getKey())
+                            .append(": ").append(entry.getNewValue()).append("\n");
+                    break;
+                case UNCHANGED:
+                    result.append("    ").append(entry.getKey())
+                            .append(": ").append(entry.getOldValue()).append("\n");
+                    break;
+                default:
+                    break;
             }
         }
-        result.append("}");
 
+        result.append("}");
         return result.toString();
     }
 }

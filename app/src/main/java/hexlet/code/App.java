@@ -3,8 +3,6 @@ package hexlet.code;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Command;
-
-import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import picocli.CommandLine.Parameters;
@@ -13,8 +11,8 @@ import picocli.CommandLine.Parameters;
         description = "Compares two configuration files and shows a difference.")
 public class App implements Callable<Integer> {
 
-    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
-    private String format = "stylish";
+    @Option(names = {"-f", "--format"},  defaultValue = "stylish", description = "output format [default: stylish]")
+    private String format;
 
     @Parameters(description = "path to first file")
     private String filepath1;
@@ -26,8 +24,8 @@ public class App implements Callable<Integer> {
         try {
             Map<String, String> data1 = Parser.getData(filepath1);
             Map<String, String> data2 = Parser.getData(filepath2);
-            System.out.println(Differ.generate(data1, data2));
-        } catch (IOException e) {
+            System.out.println(Differ.generate(data1, data2, format));
+        } catch (Exception e) {
             e.printStackTrace();
             return 1;
         }
