@@ -25,9 +25,6 @@ make install
 ```
 make test
 ```
-```
-make test-coverage
-```
 
 ## Пример использования
 ```bash
