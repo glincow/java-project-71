@@ -1,10 +1,11 @@
 package hexlet.code;
 
-import java.util.ArrayList;
+import java.util.Objects;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
 import java.util.Set;
+import java.util.TreeSet;
+import java.util.Map;
+import java.util.ArrayList;
 
 public class DiffCalculator {
     public static List<DiffEntry> calculate(Map<String, Object> file1, Map<String, Object> file2) {
@@ -20,7 +21,7 @@ public class DiffCalculator {
                 differences.add(new DiffEntry(key, null, value2, DiffEntry.DiffType.ADDED));
             } else if (!file2.containsKey(key)) {
                 differences.add(new DiffEntry(key, value1, null, DiffEntry.DiffType.DELETED));
-            } else if (!isEqual(value1, value2)) {
+            } else if (!Objects.equals(value1, value2)) {
                 differences.add(new DiffEntry(key, value1, value2, DiffEntry.DiffType.CHANGED));
             } else {
                 differences.add(new DiffEntry(key, value1, value2, DiffEntry.DiffType.UNCHANGED));
@@ -28,15 +29,5 @@ public class DiffCalculator {
         }
 
         return differences;
-    }
-
-    private static boolean isEqual(Object value1, Object value2) {
-        if (value1 == null && value2 == null) {
-            return true;
-        }
-        if (value1 == null || value2 == null) {
-            return false;
-        }
-        return value1.toString().equals(value2.toString());
     }
 }

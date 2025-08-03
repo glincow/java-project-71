@@ -12,7 +12,7 @@ public class Formatter {
             case "stylish" -> StylishFormatter.format(differences);
             case "plain" -> PlainFormatter.format(differences);
             case "json" -> JsonFormatter.format(differences);
-            default -> throw new Exception("This format is not supported");
+            default -> throw new Exception("This format is not supported: " + formatName);
         };
     }
 }

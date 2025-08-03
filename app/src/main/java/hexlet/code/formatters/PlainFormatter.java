@@ -33,7 +33,7 @@ public class PlainFormatter {
                 case UNCHANGED:
                     break;
                 default:
-                    break;
+                    throw new RuntimeException("Unknown type: " + entry.getType());
             }
         }
 
