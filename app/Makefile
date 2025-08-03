@@ -7,7 +7,7 @@ build:
 	./gradlew build
 
 install:
-    ./gradlew installDist
+	./gradlew installDist
 
 test:
-    ./gradlew test
+	./gradlew test
